@@ -5,4 +5,4 @@ We are going to study, both theoretically and empirically, the impact of adding 
 
 Project supervisors: Alex Iosevich (UR), Azita Mayeli (CUNY) and Brian McDonald (UR)
 
-Team: Stephanie Wang, 
+Team: Stephanie Wang, Maxwell Sun
