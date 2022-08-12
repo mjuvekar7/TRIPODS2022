@@ -1,0 +1,350 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{rmk}{Remark}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bbm}
+\newcommand{\iu}{{i\mkern1mu}}
+
+\title{Erdos 2022 - Dudley Classes}
+\author{Us }
+\date{July 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{VC Dimension of Indicator Function of a Function Vector Space}
+
+\begin{theorem}\label{thm1.1}
+Let $X$ be a set and $\mathcal{F}$ be a finite dimension vector space of functions from $X \rightarrow \mathbb{R}$. Consider the hypothesis class $\mathcal{H} = \{ \mathbbm{1}_{f \ge 0}: f \in \mathcal{F} \}$. Then VCDim($\mathcal{H}$) $= \dim \mathcal{F}$.
+\end{theorem}
+
+We first show that there exists a subset $x_1, x_2, \dots, x_n$ that is shattered by $\mathcal{H}$, where $n = \dim \mathcal{F}$. 
+
+\begin{lemma}
+For all $1 \le i \le n$, there exists a sequence of linearly independent functions $f_1, f_2, \dots, f_i \in \mathcal{F}$ and a sequence of points $x_1, x_2, \dots, x_i \in X$ such that $f_j(x_j) \neq 0$ for all $j \le i$ and $f_j(x_k) = 0$ for all $k < j \le i$. 
+\end{lemma}
+
+\begin{proof}
+We proceed with induction on $i$. For the base case $i=1$, let $f_1$ be an arbitrary nonzero element of $\mathcal{F}$ (since $\dim \mathcal{F} > 0$). Then there exists an $x_1$ such that $f_1(x_1) \neq 0$ and we are done.
+
+Suppose the lemma is true for some $i<n$. We show it is true for $i+1$. Then we can choose a $g_{i+1} \in \mathcal{F}$ such that $g_{i+1} \not \in \text{span}\{f_j\}_{1 \le j\le i}$. For each $j \le i$, let $g_{i+1}(x_j) = q_j$. Then we can let 
+$$
+h_1 = g_{i+1} - \frac{g_{i+1}(x_1)}{f_1(x_1)}f_1
+$$
+and notice that $h_1(x_1) = 0$ and $h_1 \in \mathcal{F}$. Similarly define $h_2 \in \mathcal{F}$ so that
+$$
+h_2 = h_1 - \frac{h_1(x_2)}{f_2(x_2)}f_2
+$$
+so $h_2(x_1)=h_2(x_2)=0$. We define until we have
+$$h_{i} = h_{i-1}-\frac{h_{i-1}(x_{i})}{f_i(x_i)}f_{i}$$
+Then we will have $h_i(x_1)=h_i(x_2)=\cdots=h_i(x_i)=0$ and $h_i \in \mathcal{F}$. We want to find $x_{i+1}$ such that $h_i(x_{i+1}) \neq 0$, then we will have the set of $i+1$ functions
+$f_1,f_2,\cdots,f_{i},h_i$ and the subset of $X$ will be $(x_1,x_2,\cdots,x_{i+1})$ will satisfy the hypothesis.
+
+Suppose not, then $\forall x \in X$, $h_i(x)=0$. We have
+\begin{align*}
+    g_{i+1}&=h_1+\frac{g_{i+1}(x_1)}{f_1(x_1)}f_1\\
+    &=h_2+\frac{h_1(x_2)}{f_2(x_2)}f_2+\frac{g_{i+1}(x_1)}{f_1(x_1)}f_1\\
+    &= \cdots\\
+    &= h_i+\frac{h_{i-1}(x_i)}{f_i(x_i)}f_i+\frac{h_{i-2}(x_{i-1})}{f_{i-1}(x_{i-1})}f_{i-1}+\cdots+\frac{h_1(x_2)}{f_2(x_2)}
+f_2+\frac{g_{i+1}(x_1)}{f_1(x_1)}f_1\\
+    &= \frac{h_{i-1}(x_i)}{f_i(x_i)}f_i+\frac{h_{i-2}(x_{i-1})}{f_{i-1}(x_{i-1})}f_{i-1}+\cdots+\frac{h_1(x_2)}{f_2(x_2)}
+f_2+\frac{g_{i+1}(x_1)}{f_1(x_1)}f_1
+\end{align*}
+Therefore, we will have $g_{i+1} \in \text{span} \{f_j \}_{1 \leq j \leq i}$, which is a contradiction since we assume that $g_{i+1} \not \in \text{span} \{f_j \}_{1 \leq j \leq i}$. Hence, there exists $x_{i+1} \in X$ such that $h_{i}(x_{i+1}) \neq 0$
+
+As a result, the claim is true for $i+1$. By the Principle of Mathematical Induction, the proof is complete
+\end{proof}
+Back to the theorem, let $f_1,f_2,\cdots,f_n \in \mathcal{F}$ and $S = \{x_1,x_2,\cdots,x_n \} \in X$ such that
+$$f_i(x_j) = \begin{cases}
+0 & \text{if $i>j$}\\
+a_i \neq 0 & \text{if $i=j$}\\
+x_{ij} & \text{if $i<j$}
+\end{cases}$$
+We can see that $\mathcal{F} = \text{span} \{ f_i\}_{1 \leq i \leq n}$. Consider the matrix
+$$A = [f_{j}(x_i)]_{i,j=1}^n $$
+We will have $A$ is an lower triangular matrix, so $\det A = a_1a_2\cdots a_n \neq 0$ so $A$ is invertible. We will prove that $\forall S' \subseteq S, \exists f \in \mathcal{F}$ such that $f(x) \geq 0$ if $x \in S'$ and $f(x)<0$ otherwise.
+
+We have ${f_1,f_2,\cdots,f_n}$ is a basis of $\mathcal{F}$ so $\exists c_1,c_2,\cdots,c_n \in \mathbb{R}$ such that
+$$f = c_1f_1+c_2f_2+\cdots+c_nf_n$$
+Then we will have $f(x_i)=c_1f_1(x_i)+c_2f_2(x_i)+\cdots+c_nf_n(x_i) \ \forall 1 \leq i \leq n$. Let the matrix $C=\begin{pmatrix}
+c_1\\
+c_2\\
+\cdots \\
+c_n
+\end{pmatrix}$ and $F=\begin{pmatrix}
+f(x_1)\\
+f(x_2)\\
+\cdots\\
+f(x_n)
+\end{pmatrix}$. Then the set of equations can be written as
+$$AC=F$$
+Since $A$ is invertible, for any $F$, we will have $C=A^{-1}F$. So no matter how we choose $f(x_i)$ to be positive or negative, there will be $c_1,c_2,\cdots,c_n$ such that the function $f=c_1f_1+c_2f_2+\cdots+c_nf_n$ will satisfy.
+
+Therefore, for any $S' \subseteq S$, if we take $f$ defined as above and the hypothesis function $h=\mathbbm{1}_f \in \mathcal{H}$, we will get
+$$h(x) = \begin{cases}
+1 & \text{if $x \in S'$}\\
+0 & \text{otherwise}
+\end{cases}$$
+Hence, the set $x_1,x_2,\cdots,x_n$ is shattered by $\mathcal{H}$
+
+Now, what is left is to show that $\mathcal{H}$ cannot shattered any subset of $n+1$ elements in $S$. Suppose not, let $S=\{x_1,x_2,\cdots,x_{n+1}\} \in X$ such that $\mathcal{H}$ shatters it. Then for any subset $S'$ of $S$, we will have some $f \in \mathcal{F}$ such that $f(x) \geq 0$ if $x \in S'$ and $< 0$ otherwise
+
+Let $f=c_1f_1+c_2f_2+\cdots+c_nf_n$ and denote $R_i$ be the $i^{th}$ row of the matrix $A$. We have $R_1,R_2,\cdots,R_{n+1}$ are linearly dependent. Without lost of generality, suppose we write
+$$R_{n+1} = a_1R_1+a_2R_2+\cdots+a_nR_n$$
+Then
+$$AC = \begin{pmatrix}
+R_1\\
+R_2\\
+\cdots\\
+R_n\\
+\displaystyle \sum_{i=1}^n a_iR_i
+\end{pmatrix}\begin{pmatrix}
+c_1\\
+c_2\\
+\cdots\\
+c_n
+\end{pmatrix}=\begin{pmatrix}
+f(x_1)\\
+f(x_2)\\
+\cdots\\
+f(x_n)\\
+\displaystyle \sum_{i=1}^n a_if(x_i)
+\end{pmatrix}$$
+Since $\mathcal{H}$ shatters $S'$, we can choose $f(x_1),f(x_2),\cdots,f(x_n)$ to be some value such that $a_if(x_i)>0 \ \forall 1 \leq i \leq 1$. Therefore, $\displaystyle \sum_{i=1}^n a_if(x_i) \geq 0$ so $f(x_{n+1}) \geq 0$. This means that we cannot generate the function when we need $f(x_{n+1})<0$
+
+As a result, $\mathcal{H}$ cannot shatter $S$, which is a contradiction. Therefore, $\mathcal{H}$ cannot shatter any set of $n+1$ elements
+
+In conclusion, we must have $VCDim(\mathcal{H})=\text{dim} \mathcal{F}$
+\begin{rmk}
+The same idea can be applied for the case $\mathcal{H} = \{\mathbbm{1}_{f=0}: f \in \mathcal{F} \}$ or $\mathcal{H} = \{\mathbbm{1}_{f>0}: f \in \mathcal{F} \}$
+\end{rmk}
+
+\begin{rmk}
+(Emmett's suggestion): What if we change $\mathbb{R}$ to other fields? If $\mathbb{R}$ is changed to $\mathbb{Z}_p$ and $X \subseteq \mathbb{Z}$, $\mathcal{F}$ will be a finite dimension vector space of functions from $\mathbb{X} \rightarrow \mathbb{Z}_p$ and the hypothesis class will be
+$$\mathcal{H} = \{\mathbbm{1}_{f=0}: f \in \mathcal{F}\}$$
+then $VCdim(\mathcal{H}) = \text{Dim} \mathcal{F}$
+\end{rmk}
+
+
+\begin{corollary}
+Let $X$ be a set and $\mathcal{F}$ be a finite dimension vector space of functions from $X \rightarrow \mathbb{R}$. Let $\alpha: \mathcal{F} \rightarrow \mathbb{R}$ be a non-trivial linear mapping. Consider the hypothesis class $\mathcal{H} = \{ \mathbbm{1}_{f \ge 0}: f \in \mathcal{F},\alpha(f) = 0 \}$. Then VCDim($\mathcal{H}$) $= \dim \mathcal{F}-1$.
+\end{corollary}
+
+Define $\mathcal{F'} = \{f \in \mathcal{F}: \alpha(f)=0 \}$. We have $\mathcal{F'}$ is a subspace of $\mathcal{F}$ so $\text{dim} \mathcal{F}' \leq \text{dim} \mathcal{F}$. Suppose $\mathcal{F}'=\text{span} \{f'_i \}_{1 \leq i \leq k}$. Then we will have
+$$\mathcal{H} = \{\mathbbm{1}_{f \geq 0} : f \in \mathcal{F'}\}$$
+By theorem 1.1, we will have
+$$VC\text{dim}(\mathcal{H})=\text{dim} \mathcal{F'}=\dim{F}-\text{rank}(\alpha)$$
+By rank-nullity theorem. However, $\text{rank}(\alpha)=1$
+so we get $Q.E.D$
+
+\begin{theorem}
+Let $X$ be a set and $\mathcal{F}$ be a finite dimension vector space of functions from $X \rightarrow \mathbb{R}$. Let $\alpha: \mathcal{F} \rightarrow \mathbb{R}$ be a non-trivial linear mapping. Consider the hypothesis class $\mathcal{H} = \{ \mathbbm{1}_{f \ge 0}: f \in \mathcal{F},\alpha(f) > 0 \}$. Then VCDim($\mathcal{H}$) $= \dim \mathcal{F}-1$.
+\end{theorem}
+
+The proof of this corollary is similar to the proof of Theorem 1.1. As in Lemma 1.2, we first show that there exists a basis of functions in $\mathcal{F}$, $\{f_i\}_{1 \le i \le n}$ (with $n = \dim \mathcal{F}$ and a sequence of points in $X$, $\{x_i\}_{1 \le i \le n-1}$ such that $\alpha(f_n) \neq 0$, $f_i(x_i) \neq 0$ for all $i$, and $f_i(x_k)$ = 0 for all $k<i$. By Lemma 1.2, we can construct a set of $\{x_i\}_{1 \le i \le n-1}$ and linearly independent functions $\{f_i\}_{1 \le i \le n-1}$ such that $f_i(x_i) \neq 0$ for all $i$, and $f_i(x_k)$ for all $k<i \le n-1$. Then, there exists a $g \in \mathcal{}$ with $g \not \in \text{span} \{f_1, f_2, \dots, f_{n-1}\}$ 
+
+% First, there exists $f_1$ and $x_1$ such that $f_1(x_1) \neq 0$. For the sake of inductively constructing the $f_i$, assume that $f_1, f_2, \dots, f_i$ and $x_2, \dots, x_i$ have been constructed. 
+
+\begin{proof}
+
+Since $\text{rank}(\alpha)=1$, $\text{Dim(ker}(\alpha)\text{)}=n-1$. Let $f_1,...,f_{n-1}$ be a basis of the kernel. Then, let $f_0$ be a function that is not in $\text{ker}(\alpha)$. Therefore, $f_0,f_1,...,f_{n-1}$ forms a basis of $\mathcal{F}$. Specifically, given an element $f\in\mathcal{F}$, such that $f= c_0f_0 + c_1 f_1 +... +c_{n-1}f_{n-1}$, $\alpha(f)=c_0\alpha(f_0)$. We assume without loss of generality that $\alpha(f_0)>0$. Then, $\alpha(f)>0$ is equivalent to the condition that $c_0>0$.
+
+We will first construct a set of size $n-1$ which is shattered by $\mathcal{H}$. From Lemma 1.2., there exists a set $\{x_1,...,x_{n-1}\}$ that is shattered by the hypothesis class of the set of some linear combination of linearly independent functions $f_1,...,f_{n-1}\in \text{ker}(\alpha)$. By further performing Gaussian elimination on these functions, we obtain a linearly independent set of functions $g_1,...,g_{n-1}$ such that $g_i(x_j))=\delta_{ij}$ (the Kronecker delta). Then, to obtain any binary string from,
+\begin{align*}
+\mathbbm{1}_{[0,\infty)}\circ g(x_i)&=\mathbbm{1}_{[0,\infty)} \circ (c_1g_1+c_2g_2+...+c_{n-1}g_{n-1})(x_i)\\&=\mathbbm{1}_{[0,\infty)} \circ (c_ig_i)(x_i) \\ &= \mathbbm{1}_{[0,\infty)}(c_i),
+\end{align*}
+we simply let $c_i=1$ or -1 as desired.
+
+Then, let,
+$$c_0 = \frac{1}{2}\frac{1}{\max_{j\in\{1,...,n-1\}}|f_0(x_j)|}.$$
+
+Thus, $(c_0f_0+g)(x_i)= g(x_i)\pm \frac{1}{2}$. Since $g(x_i)=\pm1$,\\ 
+$\mathbbm{1}_{[0,\infty)}\circ g(x_i) = \mathbbm{1}_{[0,\infty)}\circ (c_0f_0+g)(x_i)$ and $ \alpha(c_0 f_0 + g) = c_0\alpha(f_0) > 0$. 
+Then, $\mathcal{H}$ shatters $\{x_1,...,x_{n-1}\}$.
+
+Now, suppose there is some set set of $n$ points that is shattered by $\mathcal{H}$. Let this set be $\{x_1,...,x_n\}$. Then, let $A=(f_{i-1}(x_j))_{i,j}$ be the matrix as defined above. We have already seen in the proof of Theorem \ref{thm1.1} that such an $A$ must be invertible. Then, the output is given to us by the equation $AC=F$, where $c_0>0$.
+
+We thus have $A^{-1}F = C$. Specifically, given $A^{-1}=(b_{ij})_{i,j}$, we see that
+\begin{equation}\label{hyperplane}
+    b_{1j}f(x_1)+...+b_{nj}f(x_n)=c_0>0,
+\end{equation}
+which gives us the equation for a hyperplane.
+
+We can then find a function $f\in\mathcal{F}$ such that $\text{sgn}(f(x_k))=-\text{sgn}(b_{kj})$, since $\mathcal{H}$ shatters $\{x_1,...,x_n\}$. However, this contradicts \eqref{hyperplane}. Therefore, we conclude that $\mathcal{F}$ does not shatter any set of size $n$.
+\end{proof}
+
+
+\begin{theorem}
+Let $X$ be a set and $\mathcal{F}$ be a finite dimension vector space of functions from $X \rightarrow \mathbb{R}$. Let $\alpha: \mathcal{F} \rightarrow \mathbb{R}$ be a non-trivial linear mapping. Consider the hypothesis class $\mathcal{H} = \{ \mathbbm{1}_{f \ge 0}: f \in \mathcal{F},\alpha(f) = 1 \}$. Then VCDim($\mathcal{H}$) $= \dim \mathcal{F}-1$.
+\end{theorem}
+
+With the same argument as above, we can build a basis of $\mathcal{F}$ such that $\alpha(f_1)=1$ and $\alpha(f_i)=0 \ \forall 2 \leq i \leq n$. Then we have for any $f \in \mathcal{F}$
+$$f=c_1f_1+c_2f_2+\cdots+c_nf_n \rightarrow \alpha(f)=c_1\alpha(f_1)=c_1$$
+
+Then we need if $\alpha(f)=1$, then $c_1$ must be equal to $1$. Now, suppose $\mathcal{H}$ shatters a set of $n$ points $x_1,x_2,\cdots,x_n$. Then we have $$AC=F \iff \begin{pmatrix}
+f_1(x_1) & f_2(x_1) & \cdots & f_n(x_1)\\
+f_1(x_2) & f_2(x_2) & \cdots & f_2(x_n)\\
+\cdots & \cdots & \cdots & \cdots\\
+f_1(x_n) & f_2(x_n) & \cdots & f_n(x_n)\\
+\end{pmatrix}\begin{pmatrix}
+1\\
+c_2\\
+\cdots\\
+c_n\\
+\end{pmatrix}=\begin{pmatrix}
+f(x_1)\\
+f(x_2)\\
+\cdots\\
+f(x_n)
+\end{pmatrix}$$
+However, we can reduce the $1$ by consider the matrix $A_1$, which we removed the first column, then
+$$AC=F \iff A_1\begin{pmatrix}
+c_2\\
+c_3\\
+\cdots\\
+c_n
+\end{pmatrix}=\begin{pmatrix}
+f(x_1)-f_1(x_1)\\
+f(x_2)-f_1(x_2)\\
+\cdots\\
+f(x_n)-f_1(x_n)\\
+\end{pmatrix}$$
+We have the last row of $A_1$ should be a linear combination of the previous rows. As calculated above, we can have
+$$f(x_n)-f_1(x_n)=a_1(f(x_1)-f_1(x_1))+a_2(f(x_2)-f_1(x_2)+\cdots+a_{n-1}(f(x_{n-1})-f_1(x_{n-1}))$$
+Then
+$$f(x_n)=a_1f(x_1)+a_2f(x_2)+\cdots+a_{n-1}f(x_{n-1})+C$$
+with $C=\displaystyle \sum_{i=1}^{n-1}a_if_1(x_i)+f_1(x_n)$. We consider $2$ cases
+
+Case 1: If $C<0$, then we can choose the sign of $f(x_1),f(x_2),\cdots,f(x_{n-1})$ such that $a_if(x_i) \leq 0$ for all $1 \leq i \leq n-1$. Then, $f(x_n)$ will always be smaller than $0$, which contradicts the fact that $\mathcal{H}$ shatters $(x_1,x_2,\cdots,x_n)$
+
+
+Case 2: If $C \geq 0$, similarly, we choose the sign such that $a_if(x_i) \geq 0$ so $f(x_n) \geq 0$, which also contradict the fact that $\mathcal{H}$ shatters $(x_1,x_2,\cdots,x_n)$
+
+Hence, we can conclude that $\mathcal{H}$ does not shatter any set of $n$ points. Now, we will prove that $\mathcal{H}$ shatters a set of $n-1$ points. We will use a version of Lemma 1.2
+\begin{lemma}
+For all $1 \leq i \leq n$, there exists a sequence of linearly independent functions $f_1,f_2,\cdots,f_i \in \mathcal{F}$ and a set of elements $x_2,x_3,\cdots,x_n$ such that $\alpha(f_1)=1$, $\alpha(f_j)=0 \ \forall 2 \leq j \leq i$, while
+$$f_{i+1}(x_i) \neq 0 \ \forall 1 \leq i \leq n-1, f_{i+1}(x_j)=0 \ \forall 1 \leq i \leq n-1, 1 \leq j \leq i$$
+\end{lemma}
+The proof is quite similar to the proof of Lemma 1.2, we only need the condition that $\alpha$ is surjective so that we can choose $g_{i+1}$ such that $\alpha(g_{i+1})=\frac{g_{i+1}(x_1)}{f_1(x_1)}$
+
+Then with the same idea as above, as we remove the first column, we will get a lower triangle matrix with non-zero determinant. Hence, it will be invertible. Therefore, there will always $c_2,\cdots,c_n$ such that $A_1C=F$.
+
+Hence, $\mathcal{H}$ shatters $(x_2,x_3,\cdots,x_n)$ so $VCDim(\mathcal{H}) \geq \text{dim} \mathcal{F}-1$. With what we proved earlier, we can conclude 
+that $VCDim(\mathcal{H})=\text{dim} \mathcal{F}-1$
+
+\begin{conjecture}
+Let $\mathbb{F}$ be a field and $\mathbb{F}' \subset \mathbb{F}$ be a subfield. Consider $\mathcal{F}$ be a $\mathbb{F}$-subspace of $X \rightarrow \mathbb{F}$. Define the hypothesis class as
+$$\mathcal{H}=\{\mathbbm{1}_{\mathbb{F'}} \circ f| f \in \mathcal{F} \}$$
+Then $VCdim(\mathcal{H}) = \text{dim} \mathcal{F}$
+\end{conjecture}
+
+In terms of learning theory, we have a situation where there exists a "correct" function in $\mathcal{H}$ and we are trying to determine it. We (or more precisely, our learning algorithm) have access to a certain number of random samples from the domain $X$ and the value they are mapped to in $\{0,1\}$. What the result about the VC dimension means is that there exists some learning algorithm $A$ such that given enough random samples, we can produce a hypothesis for the function $h$ such that $D_X(h\neq f) \le \epsilon$ with probability at least $1-\delta$. $D_X$ denotes the density of $X$ on which the inside condition is true. That is, $h$ is probably approximately correct and $\mathcal{H}$ is probably approximately learnable.
+
+We will try to show that $\mathcal{H}$ does not shatter any set of $n+1$ points in $X$.
+
+We try to show that there exists $n$ points in $X$ that can be shattered. Due to Lemma 1.2 and further Gaussian elimination, we can discover linearly independent functions $g_1, g_2, \dots, g_n \in \mathcal{F}$ and $x_1, x_2, \dots, x_n \in X$ such that $g_i(x_j) = \delta_{ij}$. As a result, assuming $\mathbb{F}'$ is a proper subset of $\mathbb{F}$, we can shatter $x_1, x_2, \dots, x_n$. To see this, let $(a_1, a_2, \dots, a_n)$ be a random tuple of $1$s and $-1$s. Then, there exists an $f \in \mathcal{F}$ such that $f(x_i) = a_i$. Simply let $f = \sum_{i=1}^n a_ig_i$.
+
+\begin{conjecture}
+Suppose $\mathcal{F} = \text{span}\{1,x,x^2,\cdots,x^n\}$, which can be described as the field of polynomials with complex coefficients. Define
+$$\mathcal{H} = \{\mathmmb{1}_{\mathbb{R}} \circ f| f \in \mathcal{F} \}$$
+Then what will be the VCDim of $\mathcal{H}$?
+\end{conjecture}
+
+For $n=0$, we have $f$ will always be a constant, which can be shown that the VCDim of $\mathcal{H}$ will be $1$
+
+For $n=1$, consider 3 complex numbers $\iu,2\iu+1,3\iu+3$. Then we can shown that there exists 3 linear polynomials $p_0,p_1,\cdots,p_7$ such that when applying $p_i$ to the 3 numbers, we will create the binary expansion of $i$. For example, take $p_0(x) = \iu, p_1(x) = x-(\iu), p_2(x)=x-(2\iu+1), p_3(x) = x-(3\iu+3),...$. We will get the VC Dimension of $\mathcal{H}$ will be $\geq 3$
+
+Suppose $k$ be the largest set that $\mathcal{H}$ will shatter and $k \geq 3$. Then by Lagrange Interpolation Formula, we will get
+$$f = f(x_1) \frac{(x-x_1)}{(x_2-x_1)}+f(x_2) \frac{(x-x_2)}{(x_1-x_2)}$$
+Suppose $x_i = a_i+b_i \iu$ with $a_i,b_i \in \mathbb{R} \ \forall 1 \leq r \leq k$. We will get
+$$f(x_i) = f(x_1) \frac{(x_i-x_1)}{(x_2-x_1)}+f(x_2)\frac{(x_i-x_2)}{(x_1-x_2)}$$
+Let $f(x_1) = c_1+d_1 \iu, f(x_2) = c_2+d_2\iu$, then
+\begin{align*}
+    f(x_i) &= (c_1+d_1\iu) \frac{(a_i-a_1)+(b_i-b_1)\iu}{(a_2-a_1)+(b_2-b_1)\iu}+(c_2+d_2\iu)\frac{(a_i-a_2)+(b_i-b_2)\iu}{(a_1-a_2)+(b_1-b_2)\iu}\\
+    &= \frac{(c_1+d_1\iu)((a_i-a_1)+(b_i-b_1)\iu)-(c_2+d_2\iu)((a_i-a_2)+(b_i-b_2)\iu)}{(a_2-a_1)+(b_2-b_1)\iu}
+\end{align*}
+
+\begin{conjecture}
+Suppose $\mathcal{F}$ is the vector space of $\le n$ degree polynomials over $\mathbb{R}$ with domain $\mathbb{R}$. Then the hypothesis class 
+$$
+\mathcal{H} = \left\{\mathbbm{1}_{\mathbb{Q}} \circ f : f \in \mathcal{F}\right\}
+$$
+has VC dimension $2n+1$.
+\end{conjecture}
+
+It is trivial to see that the VC dimension of $\mathcal{H}$ is $1$ when $n=0$. [May elaborate later]
+
+When $n=1$, observe that the set of points $\{1, \sqrt{2}, 1 + \sqrt 2\}$ is shattered. To see this, note that the polynomials (in terms of x) $\sqrt{2}, x, \sqrt{2}x (1-\sqrt2)x, (1+\sqrt{2})x - \sqrt{2}, \sqrt{2}x - \sqrt{2}, x - \sqrt{2}, 0$ correspond to the triples $(0,0,0), (1,0,0), (0,1,0)$, $(0,0,1), (1,1,0), (1,0,1), (0,1,1), (1,1,1)$. (A $1$ in the first coordinate means that the function is rational at $1$, while a $0$ denotes that the function is irrational at $1$. Similarly, a $1$ in the second coordinate means that the polynomial is rational at $\sqrt2$ and so on.)
+
+We now show that four reals cannot be shattered by $\mathcal{H}$. Assume for the sake of contradiction that there do exist distinct $x_1, x_2, x_3, x_4$ that are shattered. Then, there exists a polynomial $f(x) = ax+b$ such that $ax_1+b$, $ax_2+b$, $ax_3+b$ are rational while $ax_4 + b$ is irrational. So, 
+$$(ax_1+b)-(ax_2+b) = a(x_1-x_2) \in \mathbb{Q}$$ and
+$$(ax_1+b)-(ax_3+b) = a(x_1-x_3) \in \mathbb{Q}$$
+Note that $a\neq 0$, or else $f$ is just a constant polynomial and the rationality of $ax_1 + b = b$ implies that $ax_4+b$ is also rational. Thus, we can divide the two values above to obtain that
+$$
+\frac{a(x_1-x_2)}{a(x_1-x_3)} = \frac{x_2-x_1}{x_3-x_1} \in \mathbb{Q}.
+$$
+If we let $t = x_1$, $x_2 = t+c$ (where $c\neq 0$), then the above implies that $x_3 = t+r_3c$ for some rational $r_3$. Let $x_4 = t+r_4c$ for some $r_4$. We claim that $r_4$ must be rational. Note that due to the shattering, we have a linear polynomial $g(x) = ex+f$ such that $ex_1+f$, $ex_2+f$, $ex_4+f$ are rational but $ex_3+f$ is irrational. Then, we have
+$$(ex_2+f) - (ex_1+f) = e(x_2-x_1) \in \mathbb{Q}$$
+and
+$$(ex_4+f) - (ex_1+f) = e(x_4-x_1) \in \mathbb{Q}.$$
+By an argument similar to that above (which showed that $a\neq 0$), we have $e \neq 0$, so 
+$$
+\frac{e(x_4-x_1)}{e(x_2-x_1)} = \frac{x_4-x_1}{x_2-x_1} = \frac{r_4c}{c} = r_4 \in \mathbb{Q},
+$$
+as desired. But, this then implies that 
+\begin{align*}
+    f(x_4) = f(t+cr_4) &= a(t+cr_4) + b \\
+    &= (at+b) + r_4ac \\
+    &= (ax_1+b) + r_4a(x_2-x_1) \\
+    &= f(x_1) + r_4[f(x_2)-f(x_1)] \in \mathbb{Q},
+\end{align*}
+a contradiction. Hence, our original assumption that the four points $x_1, x_2, x_3, x_4$ are shattered by $\mathcal{H}$ was false, and the maximal shattered set has size at most $3$. This concludes the proof that $\text{VCdim}(\mathcal{H}) = 3$.
+
+In the case of $n=2$, $5$ points can be shattered. See draft.tex.
+
+See work towards an upper bound in the general case in Upper Bound.tex.
+
+\section{Graph Products in Finite Field Vector Spaces (Brian Suggested it on Tuesday)}
+
+Let $G$ and $H$ be any two graphs with vertex sets $\{a_1, a_2, \dots , a_m\}$ and $\{b_1, b_2, \dots, b_n\}$. We define the product of the graphs $G \times H$ to be the graph with vertex set $\{c_{ij}\}_{\substack{1 \le i \le m \\ 1 \le j \le n}}$ where 
+\begin{itemize}
+    \item there is never an edge between $c_{ij}$ and $c_{i'j'}$ for $i \neq i'$ and $j \neq j'$,
+    \item there is an edge between $c_{ij}$ and $c_{ij'}$ if and only if there is an edge between $b_j$ and $b_{j'}$ in $H$,
+    \item and there is an edge between $c_{ij}$ and $c_{i'j}$ if and only if there is an edge between $a_i$ and $a_{i'}$.
+\end{itemize}
+\begin{theorem}
+Let G be a graph with $v_G$ vertices and $e_G$ edges that has at least $\frac{|E|^{v_G}}{q^{e_G}}$ embeddings in any subset $E$ of $\mathbb{F}_q^d$ provided that $|E| \ge Cq^{\alpha}$. Similarly, let H be a graph with $v_H$ vertices and $e_H$ edges that has at least $\frac{|E|^{v_H}}{q^{e_H}}$ embeddings in any subset $E$ of $\mathbb{F}_q^d$ provided that $|E| \ge Cq^{\beta}$. (To construct the embeddings, there is an "edge" between two points in $\mathbb{F}_q^d$, $x$ and $y$, if $y$ lies on the sphere of radius $t$ centered at $x$.) There then exists at least $\frac{|E|^{v_Gv_H}}{q^{e_H + d(v_G-1)v_H}}$ embeddings of $G \times H$ in any set $E$ where $|E| \ge C\max(q^{\alpha}, q^{d + \frac{\beta-d}{v_G}})$.
+\end{theorem}
+
+To prove this theorem, we first begin with a lemma regarding orientations of configurations in $\mathbb{F}_q^d$.
+
+\begin{lemma}
+For a graph $G$ with $u$ vertices and $f$ edges, there are at most $C_1q^{ud-f}$ nondegenerate embeddings of the graph in $\mathbb{F}_q^d$ where $C_1$ depends on the graph. Furthermore, for some $v_1$ in the $G$, then if the location of $v_1$ is fixed there are at most $C_2q^{ud-f-d}$ such embeddings.
+\end{lemma}
+\begin{proof}
+Let the vertices of $G$ be $v_1, v_2, \dots, v_u$. We provide a constructive argument. Then there are $q^d$ ways to choose $v_1$ in $\mathbb{F}_q^d$. Let $e_2$ be the number of edges that are incident to one of the already established vertices (just $v_1$) and the $v_2$. Then there are $O(q^{d-e_2})$ ways to choose $v_2 \neq v_1$ since $v_2$ must lie in a $d-e_2$ dimensional sphere. Continuing in this manner, if $e_i$ is the number of edges incident to $v_i$ and one of $v_1, v_2, \dots, v_{i-1}$, then the number of ways to select $v_i$ (such that $v_i$ is distinct from any previously established $v_j$) is $O(q^{d-e_i})$. It follows that the total number of ways to construct an embedding of $G$ in $\mathbb{F}_q^d$ is
+$$
+O\left( \prod_{i=1}^u {q^{d-e_i}} \right) = O\left( q^{ud-\sum_{i=2}^u{e_i}} \right) = O\left( q^{ud-f} \right).
+$$
+If we wanted to fix $v_1$, then we simply would not have multiplied by $q^d$ at the beginning, yielding the number of embeddings to be $O(q^{(u-1)d-f})$. This can be viewed as the number of possible "orientations" of the configuration.
+\end{proof} 
+
+From the lemma, there are $O(q^{v_Gd-e_G-d})$ possible orientations of $G$. It follows that if $|E| \ge q^{\alpha}$, then for some orientation, there are at least $$C\frac{\frac{|E|^{v_G}}{q^{e_G}}}{q^{v_Gd-e_G-d}} = C\frac{|E|^{v_G}}{q^{d(v_G-1)}}$$
+embeddings of $G$ with that orientation in $E$. That is, there are $C\frac{|E|^{v_G}}{q^{d(v_G-1)}}$ embeddings that are all translations of one another. Considering some fixed vertex $v$ in $G$, there are then $C\frac{|E|^{v_G}}{q^{d(v_G-1)}}$ distinct values for $v$ in $E$ with a corresponding embedding of $G$. Out of these $C\frac{|E|^{v_G}}{q^{d(v_G-1)}}$ distinct v alues, there exist at least
+$$
+\frac{\left(C\frac{|E|^{v_G}}{q^{d(v_G-1)}}\right)^{v_H}}{q^{e_H}} = C \frac{|E|^{v_Gv_H}}{q^{e_H + v_Hv_G(d-1)}}
+$$
+unique embeddings of $H$, as long as
+$$
+\frac{|E|^{v_G}}{q^{d(v_G-1)}} \ge Cq^{\beta} \iff |E|^{v_G} \ge Cq^{dv_G - d + \beta} \iff |E| \ge Cq^{d + \frac{\beta-d}{v_G}}.
+$$
+These embeddings of $H$ yield embeddings of $G\times H$ in $E$.
+
+\end{document}
