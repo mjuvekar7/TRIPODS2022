@@ -1,0 +1,64 @@
+\documentclass[english, 10pt]{article} % beamer neu lam slide
+\usepackage[top=0.9in, bottom=0.9in, left=0.7in, right=0.7in]{geometry} 
+\usepackage{cite} 
+\usepackage{hyperref}
+\usepackage{ bbold }
+\usepackage{titletoc}
+\usepackage{graphicx}
+\usepackage{color} 
+\usepackage{amsmath, amsfonts, amssymb, amsxtra, amsthm}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{verbatim}
+
+\title{...}
+
+\begin{document}
+
+\maketitle
+We will prove that $VCDim(\mathcal{H}) \leq 2dim \ F-1$. Suppose not, take the degree of the polynomial to be at most $n$ and $2n+2$ polynomials, variables $f_i,x_i$ such that
+$$f_i(x_i) \not \in \mathbb{Q} \ \ \forall 1 \leq i \leq n, f_i(x_j) \in \mathbb{Q} \ \forall 1 \leq i \neq j \leq n$$. Consider some cases:\\
+\\
+Case $1$: If all of them are algebraic number (A number is called algebraic number if it is a root of a rational polynomial). Suppose $x_1,\cdots,x_{2n+2} \in \mathbb{Q} [\alpha_1,\alpha_2,\cdots,\alpha_{2n+2}]$ with degree $d_1,d_2,\cdots,d_{2n+2}$ (A algebraic number has degree $t$) if $t$ is the smallest number such that
+$$\{1,\alpha,\alpha^2,\cdots,\alpha^t\}$$
+will be rational-dependent. Then for any $x$, we can write it as
+$$x=a_1+a_2\alpha_1+a_3\alpha_1^2+\cdots+a_{d_1d_2\cdots d_{2n+2}}\alpha_1^{d_1}\alpha_2^{d_2}...
+$$
+We know that when taking the Lagrange Interpolation Formula for some $x_1,x_2,\cdots,x_{n+1}$, we have
+$$f(x) = f(x_1)T(x,x_2,\cdots,x_n,x_1)+f(x_2)T(x,x_3,\cdots,x_n,x_1,x_2)+\cdots+f(x_{n+1})T(x,x_1,x_2,\cdots,x_{n+1})$$
+With $T$ to be defined similarly to the case $n=2$
+
+If for some $x_{i}$ with $i \geq n+1$, we have all the $T$ are rational, it will be wrong since it cannot shatter the case $f(x_i)$ is irrational
+
+Hence, there must be a vector at an irrational place. Suppose it be $(x_{\beta_1},x_{\beta_2},\cdots,x_{\beta_n+1})$ with each $x_i$ be rational. However, consider the cyclic sum of $T$, which is equal to $1$. Hence, we have
+$$x_{\beta_{n+1}}=-x_{\beta_1}-x_{\beta_2}-\cdots-x_{\beta_{n}}$$
+Similarly, we will get $n+1$ vectors in $\mathbb{R}^n$, which will be linear dependent. Hence, if $n$ of them yields $0$, the other one must also be $0$, which shows that if $2n+1$ points are rational, the other one must also be
+
+For example, consider the case $n=2$ with a simple field $Q[\sqrt{2}]$. We will have a system of equation
+$$\begin{cases}
+a_1f(x_1)+a_2f(x_2)+(-a_1-a_2)f(x_3)=0\\
+b_1f(x_1)+b_2f(x_2)+(-b_1-b_2)f(x_3)=0\\
+c_1f(x_1)+c_2f(x_2)+(-c_1-c_2)f(x_3)\neq 0\\
+\end{cases}$$
+$$\iff
+\begin{cases}
+a_1(f(x_1)-f(x_3))+a_2(f(x_2)-f(x_3))=0\\
+b_1(f(x_1)-f(x_3))+b_2(f(x_2)-f(x_3))=0\\
+c_1(f(x_1)-f(x_3))+c_2(f(x_2)-f(x_3)) \neq 0\\
+\end{cases}$$
+$$\iff \begin{pmatrix}
+a_1 & a_2\\
+b_1 & b_2\\
+c_1 & c_2
+\end{pmatrix} \begin{pmatrix}
+f(x_1)-f(x_3)\\
+f(x_2)-f(x_3)\\
+\end{pmatrix}=\begin{pmatrix}
+0\\
+0\\
+u
+\end{pmatrix}$$
+However, $(c_1,c_2)$ will be "rationally linear dependent" on $(a_1,a_2)$ and $(b_1,b_2)$ since all of them must be rational. Hence, the last element must also be $0$, a contradiction
+
+Now, WLOG, consider $x_1,x_2,\cdots,x_{2n+2} \in Q[t_1,t_2,\cdots,t_u]$ with $t_i,t_j$ are algebraicly independent for any $i$ and $j$
+\end{document}

@@ -1,0 +1,364 @@
+\documentclass[english, 10pt]{article} % beamer neu lam slide
+\usepackage[top=0.9in, bottom=0.9in, left=0.7in, right=0.7in]{geometry} 
+\usepackage{cite} 
+\usepackage{hyperref}
+\usepackage{ bbold }
+\usepackage{titletoc}
+\usepackage{graphicx}
+\usepackage{color} 
+\usepackage{amsmath, amsfonts, amssymb, amsxtra, amsthm}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{verbatim}
+
+\title{...}
+
+\begin{document}
+
+\maketitle
+We will prove that $x_1=1, x_2=2+\sqrt{2},x_3=3-\sqrt{2}, x_4 = 4+2\sqrt{2}, x_5 = 5-2\sqrt{2}$ can be shattered. Firstly, consider the case where at least 3 of them are rational numbers and not all 5 numbers are rational, which is trivial as we let $f_{31}(x) = 0$
+
+Let $T(x_i,x_j,x_k,x_l) = \frac{(x_i-x_j)(x_i-x_k)}{(x_l-x_j)(x_l-x_k)}$. By Lagrange Interpolation Formula, we have
+$$f(x) = f(x_1)T(x,x_2,x_3,x_1)+f(x_2)T(x,x_3,x_1,x_2)+f(x_3)T(x,x_1,x_2,x_3)$$
+We will suppose $f(x_1),f(x_2),f(x_3) \in \mathbb{Q}$. We will have
+$$T(x_4,x_1,x_2,x_3) = \frac{(x_4-x_1)(x_4-x_2)}{(x_3-x_1)(x_3-x_2)} = \frac{-65}{7}+\frac{-46}{7}\sqrt{2}$$
+$$T(x_4,x_2,x_3,x_1) = \frac{(x_4-x_2)(x_4-x_3)}{(x_1-x_2)(x_1-x_3)} = 7+4\sqrt{2}$$
+$$T(x_4,x_3,x_1,x_2) = \frac{(x_4-x_3)(x_4-x_1)}{(x_2-x_3)(x_2-x_1)}=\frac{23}{7}+\frac{18}{7}\sqrt{2}$$
+$$T(x_5,x_1,x_2,x_3) = \frac{(x_5-x_1)(x_5-x_2)}{(x_3-x_1)(x_3-x_2)} = \frac{18}{7}+\frac{-6}{7}\sqrt{2}$$
+$$T(x_5,x_2,x_3,x_1) = \frac{(x_5-x_2)(x_5-x_3)}{(x_1-x_2)(x_1-x_3)} = -9+6\sqrt{2}$$
+$$T(x_5,x_3,x_1,x_2) = \frac{(x_5-x_3)(x_5-x_1)}{(x_2-x_3)(x_2-x_1)}=\frac{52}{7}+\frac{-36}{7}\sqrt{2}$$
+There are $3$ cases
+
+If $f(x_4) \in \mathbb{Q}, f(x_5) \not \in \mathbb{Q}$, we will have
+$$\begin{cases}
+4f(x_1)+\frac{18}{7}f(x_2)+\frac{-46}{7}f(x_3) = 0\\
+6f(x_1)+\frac{-36}{7}f(x_2)+\frac{-6}{7}f(x_3) \neq 0
+\end{cases}$$
+Let $f(x_1)=\frac{1}{14},f(x_2)=\frac{-1}{9},f(x_3)=0$, we will get
+$$f_{30}(x)=\frac{1}{14}\frac{(x-2-\sqrt{2})(x-3+\sqrt{2})}{(1-2-\sqrt{2})(1-3+\sqrt{2})}-\frac{1}{9}\frac{(x-3+\sqrt{2})(x-1)}{(2+\sqrt{2}-3+\sqrt{2})(2+\sqrt{2}-1)}$$
+
+If $f(x_4) \not \in \mathbb{Q}, f(x_5) \in \mathbb{Q}$, we will have
+$$\begin{cases}
+4f(x_1)+\frac{18}{7}f(x_2)+\frac{-46}{7}f(x_3) \neq 0\\
+6f(x_1)+\frac{-36}{7}f(x_2)-\frac{-6}{7}f(x_3) = 0
+\end{cases}$$
+Then $f(x_1)=\frac{1}{7}, f(x_2)=\frac{1}{6}, f(x_3)=0$ and
+$$f_{29}(x) = \frac{1}{7}\frac{(x-2-\sqrt{2})(x-3+\sqrt{2})}{(1-2-\sqrt{2})(1-3+\sqrt{2})}+\frac{1}{6}\frac{(x-3+\sqrt{2})(x-1)}{(2+\sqrt{2}-3+\sqrt{2})(2+\sqrt{2}-1)}$$
+
+If $f(x_4) \not \in \mathbb{Q}, f(x_5) \not \in \mathbb{Q}$, we will have
+$$\begin{cases}
+4f(x_1)+\frac{18}{7}f(x_2)+\frac{-46}{7}f(x_3) \neq 0\\
+6f(x_1)+\frac{-36}{7}f(x_2)-\frac{-6}{7}f(x_3) \neq 0
+\end{cases}$$
+Let $f(x_1)=\frac{3}{14}, f(x_2)=\frac{1}{18}, f(x_3)=0$ and
+$$f_{28}(x) = \frac{3}{14}\frac{(x-2-\sqrt{2})(x-3+\sqrt{2})}{(1-2-\sqrt{2})(1-3+\sqrt{2})}+\frac{1}{18}\frac{(x-3+\sqrt{2})(x-1)}{(2+\sqrt{2}-3+\sqrt{2})(2+\sqrt{2}-1)}$$
+Now, if $f(x_1),f(x_2),f(x_4) \in \mathbb{Q}$ and we need to consider $x_3$ and $x_5$. As similar to above, we have
+$$f(x) = f(x_1)T(x,x_2,x_4,x_1)+f(x_2)T(x,x_4,x_1,x_2)+f(x_4)T(x,x_1,x_2,x_4)$$
+We also have
+$$T(x_3,x_1,x_2,x_4) = \frac{(x_3-x_1)(x_3-x_2)}{(x_4-x_1)(x_4-x_2)} = 65+-46\sqrt{2}$$
+$$T(x_3,x_2,x_4,x_1) = \frac{(x_3-x_2)(x_3-x_4)}{(x_1-x_2)(x_1-x_4)} = -87+62\sqrt{2}$$
+$$T(x_3,x_4,x_1,x_2) = \frac{(x_3-x_4)(x_3-x_1)}{(x_2-x_4)(x_2-x_1)}= 23+-16\sqrt{2}$$
+$$T(x_5,x_1,x_2,x_4) = \frac{(x_5-x_1)(x_5-x_2)}{(x_4-x_1)(x_4-x_2)} = 246+-174\sqrt{2}$$
+$$T(x_5,x_2,x_4,x_1) = \frac{(x_5-x_2)(x_5-x_4)}{(x_1-x_2)(x_1-x_4)} = -339+240\sqrt{2}$$
+$$T(x_5,x_4,x_1,x_2) = \frac{(x_5-x_4)(x_5-x_1)}{(x_2-x_4)(x_2-x_1)}= 94+-66\sqrt{2}$$
+There are 2 cases
+
+If $f(x_5) \in \mathbb{Q}$ and $f(x_3) \not \in \mathbb{Q}$, we get
+$$\begin{cases}
+240f(x_1)-66f(x_2)-174f(x_4)=0\\
+62f(x_1)-16f(x_2)-46f(x_4) \neq 0
+\end{cases}$$
+Take $f(x_1) = \frac{11}{42}, f(x_2)=\frac{20}{21}, f(x_4) = 0$, we will get
+$$f_{27}(x) = \frac{11}{42}\frac{(x-2-\sqrt{2})(x-4-2\sqrt{2})}{(1-2-\sqrt{2})(1-4-2\sqrt{2})}+\frac{20}{21}\frac{(x-1)(x-4-2\sqrt{2})}{(2+\sqrt{2}-1)(2+\sqrt{2}-4-2\sqrt{2})}$$
+If $f(x_3) \not \in \mathbb{Q}, f(x_5) \not \in \mathbb{Q}$, we will get
+$$\begin{cases}
+240f(x_1)-66f(x_2)-174f(x_4) \neq 0\\
+62f(x_1)-16f(x_2)-46f(x_4) \neq 0
+\end{cases}$$
+Let $f(x_1)=\frac{25}{126}, f(x_2)=\frac{89}{126}, f(x_4)=0$, we will get
+$$f_{26}(x) = \frac{25}{126}\frac{(x-2-\sqrt{2})(x-4-2\sqrt{2})}{(1-2-\sqrt{2})(1-4-2\sqrt{2})}+\frac{89}{126}\frac{(x-1)(x-4-2\sqrt{2})}{(2+\sqrt{2}-1)(2+\sqrt{2}-4-2\sqrt{2})}$$
+Now, if $f(x_1),f(x_2),f(x_5) \in \mathbb{Q}, f(x_3), f(x_4) \not \in \mathbb{Q}$. With the same argument as above, we have
+$$f(x) = f(x_1)T(x,x_2,x_5,x_1)+f(x_2)T(x,x_5,x_1,x_2)+f(x_5)T(x,x_1,x_2,x_5)$$
+We also have
+$$T(x_3,x_2,x_5,x_1) = \frac{(x_3-x_2)(x_3-x_5)}{(x_1-x_2)(x_1-x_5)} = \frac{5}{2}+\frac{-3}{2}\sqrt{2}$$
+$$T(x_3,x_5,x_1,x_2) = \frac{(x_3-x_5)(x_3-x_1)}{(x_2-x_5)(x_2-x_1)} = -2+\frac{4}{3}\sqrt{2}$$
+$$T(x_3,x_1,x_2,x_5) = \frac{(x_3-x_1)(x_3-x_2)}{(x_5-x_1)(x_5-x_2)}= \frac{1}{2}+\frac{1}{6}\sqrt{2}$$
+$$T(x_4,x_2,x_5,x_1) = \frac{(x_4-x_2)(x_4-x_5)}{(x_1-x_2)(x_1-x_5)} = \frac{7}{2}+\frac{3}{2}\sqrt{2}$$
+$$T(x_4,x_5,x_1,x_2) = \frac{(x_4-x_5)(x_4-x_1)}{(x_2-x_5)(x_2-x_1)} = \frac{13}{3}+\frac{10}{3}\sqrt{2}$$
+$$T(x_4,x_1,x_2,x_5) = \frac{(x_4-x_1)(x_4-x_2)}{(x_5-x_1)(x_5-x_2)}= \frac{-41}{6}+\frac{-29}{6}\sqrt{2}$$
+Then
+$$\begin{cases}
+\frac{-3}{2}f(x_1)+\frac{4}{3}f(x_2)+\frac{1}{6}f(x_5) \neq 0\\
+\frac{3}{2}f(x_1)+\frac{10}{3}f(x_2)+\frac{29}{6}f(x_5) \neq 0\\
+\end{cases}$$
+Let $f(x_1) = \frac{-10}{21}, f(x_2) = \frac{3}{14}, f(x_5)=0$, then
+$$f_{25}(x) = \frac{-10}{21} \frac{(x-2-\sqrt{2})(x-5+2\sqrt{2})}{(1-2-\sqrt{2})(1-5+2\sqrt{2})} + \frac{3}{14}\frac{(x-1)(x-5+2\sqrt{2})}{(2+\sqrt{2}-1)(2+\sqrt{2}-5+2\sqrt{2})}$$
+We let $f_{24}(x) = (x-1)(x-2-\sqrt{2})$. Now, we consider $f(x_1),f(x_3),f(x_4) \in \mathbb{Q}$. Then as similar as above, we have
+$$f(x) = f(x_1)T(x,x_3,x_4,x_1)+f(x_3)T(x,x_4,x_1,x_3)+f(x_4)T(x,x_1,x_3,x_4)$$
+We also have
+$$T(x_2,x_3,x_4,x_1) = \frac{(x_2-x_3)(x_2-x_4)}{(x_1-x_3)(x_1-x_4)} = 1+-2\sqrt{2}$$
+$$T(x_2,x_4,x_1,x_3) = \frac{(x_2-x_4)(x_2-x_1)}{(x_3-x_4)(x_3-x_1)} = \frac{23}{17}+\frac{16}{17}\sqrt{2}$$
+$$T(x_2,x_1,x_3,x_4) = \frac{(x_2-x_1)(x_2-x_3)}{(x_4-x_1)(x_4-x_3)}= \frac{-23}{17}+\frac{18}{17}\sqrt{2}$$
+$$T(x_5,x_3,x_4,x_1) = \frac{(x_5-x_3)(x_5-x_4)}{(x_1-x_3)(x_1-x_4)} = 19+-14\sqrt{2}$$
+$$T(x_5,x_4,x_1,x_3) = \frac{(x_5-x_4)(x_5-x_1)}{(x_3-x_4)(x_3-x_1)} = \frac{50}{17}+\frac{-14}{17}\sqrt{2}$$
+$$T(x_5,x_1,x_3,x_4) = \frac{(x_5-x_1)(x_5-x_3)}{(x_4-x_1)(x_4-x_3)}= \frac{-356}{17}+\frac{252}{17}\sqrt{2}$$
+There are 2 cases
+
+If $f(x_2) \not \in \mathbb{Q}, f(x_5) \in \mathbb{Q}$, then we have
+$$\begin{cases}
+-2f(x_1)+\frac{16}{17}f(x_3)+\frac{18}{17}f(x_4) \neq 0\\
+-14f(x_1)+\frac{-14}{17}f(x_3)+\frac{252}{17}f(x_4) = 0\\
+\end{cases}$$
+Let $f(x_1)=\frac{-1}{18}, f(x_3) = \frac{17}{18}, f(x_4) = 0$, we will get
+$$f_{23}(x) = \frac{-1}{18} \frac{(x-3+\sqrt{2})(x-4-2\sqrt{2})}{(1-3+\sqrt{2})(1-4-2\sqrt{2})} + \frac{17}{18} \frac{(x-1)(x-4-2\sqrt{2})}{(3-\sqrt{2}-1)(3-\sqrt{2}-4-2\sqrt{2})}$$
+
+If $f(x_2),f(x_5) \not \in \mathbb{Q}$, then we have
+$$\begin{cases}
+-2f(x_1)+\frac{16}{17}f(x_3)+\frac{18}{17}f(x_4) \neq 0\\
+-14f(x_1)+\frac{-14}{17}f(x_3)+\frac{252}{17}f(x_4) \neq 0\\
+\end{cases}$$
+
+Let $f(x_1)=\frac{-5}{42}, f(x_3)=\frac{17}{21}, f(x_4) = 0$, then we have
+$$f_{22}(x) = \frac{-5}{42} \frac{(x-3+\sqrt{2})(x-4-2\sqrt{2})}{(1-3+\sqrt{2})(1-4-2\sqrt{2})} + \frac{17}{21} \frac{(x-1)(x-4-2\sqrt{2})}{(3-\sqrt{2}-1)(3-\sqrt{2}-4-2\sqrt{2})}$$
+Now consider the case $f(x_1),f(x_3),f(x_5) \in \mathbb{Q}$ and $f(x_2),f(x_4)$ does not. Then we have
+$$f(x) = f(x_1)T(x,x_3,x_5,x_1)+f(x_3)T(x,x_5,x_1,x_3)+f(x_5)T(x,x_1,x_3,x_5)$$
+We have
+$$T(x_2,x_3,x_5,x_1) = \frac{(x_2-x_3)(x_2-x_5)}{(x_1-x_3)(x_1-x_5)} = \frac{9}{4}+\frac{3}{4}\sqrt{2}$$
+$$T(x_2,x_5,x_1,x_3) = \frac{(x_2-x_5)(x_2-x_1)}{(x_3-x_5)(x_3-x_1)} = \frac{-9}{2}+-3\sqrt{2}$$
+$$T(x_2,x_1,x_3,x_5) = \frac{(x_2-x_1)(x_2-x_3)}{(x_5-x_1)(x_5-x_3)}= \frac{13}{4}+\frac{9}{4}\sqrt{2}$$
+$$T(x_4,x_3,x_5,x_1) = \frac{(x_4-x_3)(x_4-x_5)}{(x_1-x_3)(x_1-x_5)} = \frac{73}{4}+\frac{49}{4}\sqrt{2}$$
+$$T(x_4,x_5,x_1,x_3) = \frac{(x_4-x_5)(x_4-x_1)}{(x_3-x_5)(x_3-x_1)} = -\frac{79}{2}+-28\sqrt{2}$$
+$$T(x_4,x_1,x_3,x_5) = \frac{(x_4-x_1)(x_4-x_3)}{(x_5-x_1)(x_5-x_3)}= \frac{89}{4}+\frac{63}{4}\sqrt{2}$$
+Then
+$$\begin{cases}
+\frac{3}{4}f(x_1)-3f(x_3)+\frac{9}{4}f(x_5) \neq 0\\
+\frac{49}{4}f(x_1)-28f(x_3)+\frac{63}{4}f(x_5) \neq 0\\
+\end{cases}$$
+Let $f(x_1)=\frac{-100}{63},f(x_3)=\frac{-46}{63},f(x_5)=0$ and we get
+$$f_{21}(x) = \frac{-100}{63} \frac{(x-3+\sqrt{5})(x-5+2\sqrt{5})}{(1-3+\sqrt{5})(1-5+2\sqrt{5})}+\frac{-46}{63} \frac{(x-1)(x-5+2\sqrt{5})}{(3-\sqrt{5}-1)(3-\sqrt{5}-5+2\sqrt{5})}$$
+We take $f_{20}(x) = (x-1)(x-3+\sqrt{2})$. Now we consider the case $f(x_1),f(x_4),f(x_5) \in \mathbb{Q}$ while $f(x_2),f(x_3) \not \in \mathbb{Q}$. We have
+$$f(x) = f(x_1)T(x,x_4,x_5,x_1)+f(x_4)T(x,x_5,x_1,x_4)+f(x_5)T(x,x_1,x_4,x_5)$$
+We have
+$$T(x_2,x_4,x_5,x_1) = \frac{(x_2-x_4)(x_2-x_5)}{(x_1-x_4)(x_1-x_5)} = \frac{3}{2}+\frac{-3}{2}\sqrt{2}$$
+$$T(x_2,x_5,x_1,x_4) = \frac{(x_2-x_5)(x_2-x_1)}{(x_4-x_5)(x_4-x_1)} = \frac{-39}{31}+\frac{30}{31}\sqrt{2}$$
+$$T(x_2,x_1,x_4,x_5) = \frac{(x_2-x_1)(x_2-x_4)}{(x_5-x_1)(x_5-x_4)}= \frac{47}{62}+\frac{33}{62}\sqrt{2}$$
+$$T(x_3,x_4,x_5,x_1) = \frac{(x_3-x_4)(x_3-x_5)}{(x_1-x_4)(x_1-x_5)} = \frac{-9}{2}+\frac{7}{2}\sqrt{2}$$
+$$T(x_3,x_5,x_1,x_4) = \frac{(x_3-x_5)(x_3-x_1)}{(x_4-x_5)(x_4-x_1)} = -\frac{158}{31}+\frac{-112}{31}\sqrt{2}$$
+$$T(x_3,x_1,x_4,x_5) = \frac{(x_3-x_1)(x_3-x_4)}{(x_5-x_1)(x_5-x_4)}= \frac{25}{62}+\frac{7}{62}\sqrt{2}$$
+Then
+$$\begin{cases}
+\frac{-3}{2}f(x_1)+\frac{30}{31}f(x_4)+\frac{33}{62}f(x_5) \neq 0\\
+\frac{7}{2}f(x_1)+\frac{-112}{31}f(x_4)+\frac{7}{62}f(x_5) \neq 0\\
+\end{cases}$$
+Let $f(x_1)=\frac{-142}{63}, f(x_4)=\frac{-155}{63}, f(x_5)=0$, we will get
+$$f_{19}(x) = \frac{-142}{63} \frac{(x-4-2\sqrt{2})(x-5+2\sqrt{2})}{(1-4-2\sqrt{2})(1-5+2\sqrt{2})} + \frac{-155}{63} \frac{(x-1)(x-5+2\sqrt{2})}{(4+2\sqrt{2}-5+2\sqrt{2})(4+2\sqrt{2}-1)}$$
+Take $f_{18}(x) = (x-1)(x-4-2\sqrt{2})$, $f_{17}(x) = \frac{1}{\sqrt{2}}(x-1)(x-5+2\sqrt{2})$, $f_{16}(x) = (x-1)$
+Now consider the case where $f(x_2),f(x_3),f(x_4) \in \mathbb{Q}$, we will have
+$$f(x) = f(x_2)T(x,x_3,x_4,x_2)+f(x_3)T(x,x_4,x_2,x_3)+f(x_4)T(x,x_2,x_3,x_4)$$
+We have
+$$T(x_1,x_3,x_4,x_2) = \frac{(x_1-x_3)(x_1-x_4)}{(x_2-x_3)(x_2-x_4)} = \frac{-1}{7}+\frac{-2}{7}\sqrt{2}$$
+$$T(x_1,x_4,x_2,x_3) = \frac{(x_1-x_4)(x_1-x_2)}{(x_3-x_4)(x_3-x_2)} = \frac{87}{119}+\frac{62}{119}\sqrt{2}$$
+$$T(x_1,x_2,x_3,x_4) = \frac{(x_1-x_2)(x_1-x_3)}{(x_4-x_2)(x_4-x_3)}= \frac{7}{17}+\frac{-4}{17}\sqrt{2}$$
+$$T(x_5,x_3,x_4,x_2) = \frac{(x_5-x_3)(x_5-x_4)}{(x_2-x_3)(x_2-x_4)} = \frac{37}{7}+\frac{-24}{7}\sqrt{2}$$
+$$T(x_5,x_4,x_2,x_3) = \frac{(x_5-x_4)(x_5-x_2)}{(x_3-x_4)(x_3-x_2)} = \frac{267}{119}+\frac{-138}{119}\sqrt{2}$$
+$$T(x_5,x_2,x_3,x_4) = \frac{(x_5-x_2)(x_5-x_3)}{(x_4-x_2)(x_4-x_3)}= \frac{-111}{17}+\frac{78}{17}\sqrt{2}$$
+We have 2 cases
+
+If $f(x_1) \not \in \mathbb{Q}, f(x_5) \in \mathbb{Q}, we will have$
+$$\begin{cases}
+\frac{-2}{7}f(x_2)+\frac{62}{119}f(x_3)+\frac{-4}{17}f(x_4) \neq 0\\
+\frac{-24}{7}f(x_2)+\frac{-138}{119}f(x_3)+\frac{78}{17}f(x_4) =0
+\end{cases}$$
+Take $f(x_2)=\frac{-23}{42},f(x_3)=\frac{34}{21},f(x_4) = 0$, we have
+$$f_{15}(x) = \frac{-23}{42} \frac{(x-3+\sqrt{2})(x-4-2\sqrt{2})}{(2+\sqrt{2}-3+\sqrt{2})(2+\sqrt{2}-4-2\sqrt{2})} + \frac{34}{21} \frac{(x-2-\sqrt{2})(x-4-2\sqrt{2})}{(3-\sqrt{2}-2-\sqrt{2})(3-\sqrt{2}-4-2\sqrt{2})}$$
+
+If $f(x_1),f(x_5) \not \in \mathbb{Q}$, we get
+$$\begin{cases}
+\frac{-2}{7}f(x_2)+\frac{62}{119}f(x_3)+\frac{-4}{17}f(x_4) \neq 0\\
+\frac{-24}{7}f(x_2)+\frac{-138}{119}f(x_3)+\frac{78}{17}f(x_4) \neq 0
+\end{cases}$$
+Take $f(x_2)=\frac{-50}{63}, f(x_3)=\frac{187}{126}, f(x_4) = 0$, we get
+$$f_{14}(x) = \frac{-50}{63} \frac{(x-3+\sqrt{2})(x-4-2\sqrt{2})}{(2+\sqrt{2}-3+\sqrt{2})(2+\sqrt{2}-4-2\sqrt{2})} + \frac{187}{126} \frac{(x-2-\sqrt{2})(x-4-2\sqrt{2})}{(3-\sqrt{2}-2-\sqrt{2})(3-\sqrt{2}-4-2\sqrt{2})}$$
+Consider the case where $f(x_2),f(x_3),f(x_5) \in \mathbb{Q}$ and $f(x_1),f(x_4) \not \in \mathbb{Q}$. We also have
+$$f(x) = f(x_2)T(x,x_3,x_5,x_2)+f(x_3)T(x,x_5,x_2,x_3)+f(x_5)T(x,x_2,x_3,x_5)$$
+We have
+$$T(x_1,x_3,x_5,x_2) = \frac{(x_1-x_3)(x_1-x_5)}{(x_2-x_3)(x_2-x_5)} = \frac{4}{7}+\frac{-4}{21}\sqrt{2}$$
+$$T(x_1,x_5,x_2,x_3) = \frac{(x_1-x_5)(x_1-x_2)}{(x_3-x_5)(x_3-x_2)} = \frac{10}{7}+\frac{6}{7}\sqrt{2}$$
+$$T(x_1,x_2,x_3,x_5) = \frac{(x_1-x_2)(x_1-x_3)}{(x_5-x_2)(x_5-x_3)}= -1+\frac{-2}{3}\sqrt{2}$$
+$$T(x_4,x_3,x_5,x_2) = \frac{(x_4-x_3)(x_4-x_5)}{(x_2-x_3)(x_2-x_5)} = \frac{121}{21}+\frac{74}{21}\sqrt{2}$$
+$$T(x_4,x_5,x_2,x_3) = \frac{(x_4-x_5)(x_4-x_2)}{(x_3-x_5)(x_3-x_2)} = \frac{53}{7}+\frac{36}{7}\sqrt{2}$$
+$$T(x_4,x_2,x_3,x_5) = \frac{(x_4-x_2)(x_4-x_3)}{(x_5-x_2)(x_5-x_3)}= \frac{-37}{3}+\frac{-26}{3}\sqrt{2}$$
+
+We need
+$$\begin{cases}
+\frac{-4}{21}f(x_2)+\frac{6}{7}f(x_3)+\frac{-2}{3}f(x_5) \neq 0\\
+\frac{74}{21}f(x_2)+\frac{36}{7}f(x_3)+\frac{-26}{3}f(x_5) \neq 0\\
+\end{cases}$$
+Let $f(x_2)=\frac{-15}{14}, f(x_3)=\frac{13}{14}, f(x_5)=0$, we get
+$$f_{13}(x) = \frac{-15}{14} \frac{(x-3+\sqrt{2})(x-5+2\sqrt{2})}{(2+\sqrt{2}-3+\sqrt{2})(2+\sqrt{2}-5+2\sqrt{2})} + \frac{13}{14} \frac{(x-5+2\sqrt{2})(x-2-\sqrt{2})}{(3-\sqrt{2}-5+2\sqrt{2})(3-\sqrt{2}-2-\sqrt{2})}$$
+Let $f_{12}(x)=(x-2-\sqrt{2})(x-3+2\sqrt{2})$. Consider the case where $f(x_2),f(x_4),f(x_5) \in \mathbb{Q}$ and $f(x_1),f(x_3) \not \in \mathbb{Q}$. Then we have
+$$f(x) = f(x_2)T(x,x_4,x_5,x_2)+f(x_4)T(x,x_5,x_2,x_4)+f(x_5)T(x,x_2,x_4,x_5)$$
+We have
+$$T(x_1,x_4,x_5,x_2) = \frac{(x_1-x_4)(x_1-x_5)}{(x_2-x_4)(x_2-x_5)} = \frac{-2}{3}+\frac{-2}{3}\sqrt{2}$$
+$$T(x_1,x_5,x_2,x_4) = \frac{(x_1-x_5)(x_1-x_2)}{(x_4-x_5)(x_4-x_2)} = \frac{14}{31}+\frac{-6}{31}\sqrt{2}$$
+$$T(x_1,x_2,x_4,x_5) = \frac{(x_1-x_2)(x_1-x_4)}{(x_5-x_2)(x_5-x_4)}= \frac{113}{93}+\frac{80}{93}\sqrt{2}$$
+$$T(x_3,x_4,x_5,x_2) = \frac{(x_3-x_4)(x_3-x_5)}{(x_2-x_4)(x_2-x_5)} = \frac{-5}{3}+\frac{2}{3}\sqrt{2}$$
+$$T(x_3,x_5,x_2,x_4) = \frac{(x_3-x_5)(x_3-x_2)}{(x_4-x_5)(x_4-x_2)} = \frac{53}{31}+\frac{-36}{31}\sqrt{2}$$
+$$T(x_3,x_2,x_4,x_5) = \frac{(x_3-x_2)(x_3-x_4)}{(x_5-x_2)(x_5-x_4)}= \frac{89}{93}+\frac{46}{93}\sqrt{2}$$
+We have
+$$\begin{cases}
+\frac{-2}{3}f(x_2)+\frac{-6}{31}f(x_4)+\frac{80}{93}f(x_5) \neq 0\\
+\frac{2}{3}f(x_2)+\frac{-36}{31}f(x_4)+\frac{46}{93}f(x_5) \neq 0\\
+\end{cases}$$
+Let $f(x_2)=\frac{-15}{14},f(x_4)=\frac{-31}{21},f(x_5)=0$, we get
+$$f_{11}(x) = =\frac{-15}{14} \frac{(x-4-2\sqrt{2})(x-5+2\sqrt{2})}{(2+\sqrt{2}-4-2\sqrt{2})(2+\sqrt{2}-5+2\sqrt{2})} + \frac{-31}{21} \frac{(x-5+2\sqrt{2})(x-2-\sqrt{2})}{(4+2\sqrt{2}-5+2\sqrt{2})(4+2\sqrt{2}-2-\sqrt{2})}$$
+We take $f_{10}(x) = (x-2-\sqrt{2})(x-4-2\sqrt{2})$, $f_9(x) = (x-2-\sqrt{2})(x-5+2\sqrt{2}), f_8(x) = (x-2-\sqrt{2})$. Consider the case where $f(x_3),f(x_4),f(x_5) \in \mathbb{Q}$, $f(x_1),f(x_2) \not \in \mathbb{Q}$, we get
+$$f(x) = f(x_3)T(x,x_4,x_5,x_3)+f(x_4)T(x,x_5,x_3,x_4)+f(x_5)T(x,x_3,x_4,x_5)$$
+We have
+$$T(x_1,x_4,x_5,x_3) = \frac{(x_1-x_4)(x_1-x_5)}{(x_3-x_4)(x_3-x_5)} = \frac{18}{17}+\frac{14}{17}\sqrt{2}$$
+$$T(x_1,x_5,x_3,x_4) = \frac{(x_1-x_5)(x_1-x_3)}{(x_4-x_5)(x_4-x_3)} = \frac{292}{527}+\frac{-196}{527}\sqrt{2}$$
+$$T(x_1,x_2,x_4,x_5) = \frac{(x_1-x_3)(x_1-x_4)}{(x_5-x_3)(x_5-x_4)}= \frac{-19}{31}+\frac{-14}{31}\sqrt{2}$$
+$$T(x_2,x_4,x_5,x_3) = \frac{(x_2-x_4)(x_2-x_5)}{(x_3-x_4)(x_3-x_5)} = \frac{-15}{17}+\frac{-6}{17}\sqrt{2}$$
+$$T(x_2,x_5,x_3,x_4) = \frac{(x_2-x_5)(x_2-x_3)}{(x_4-x_5)(x_4-x_3)} = \frac{363}{527}+\frac{-222}{527}\sqrt{2}$$
+$$T(x_2,x_3,x_4,x_5) = \frac{(x_2-x_3)(x_2-x_4)}{(x_5-x_3)(x_5-x_4)}= \frac{37}{31}+\frac{24}{31}\sqrt{2}$$
+We have
+$$\begin{cases}
+\frac{14}{17}f(x_3)+\frac{-196}{527}f(x_4)+\frac{-14}{31}f(x_5) \neq 0\\
+\frac{-6}{17}f(x_3)+\frac{-222}{527}f(x_4)+\frac{24}{31}f(x_5) \neq 0\\
+\end{cases}$$
+Take $f(x_3)=\frac{13}{126},f(x_4) = \frac{-155}{63}$, we get
+$$f_7(x) = \frac{13}{126} \frac{(x-4-2\sqrt{2})(x-5+2\sqrt{2})}{(3-\sqrt{2}-4-2\sqrt{2})(3-\sqrt{2}-5+2\sqrt{2})} + \frac{-155}{63} \frac{(x-5+2\sqrt{2})(x-3+\sqrt{2})}{(4+2\sqrt{2}-5+2\sqrt{2})(4+2\sqrt{2}-3+\sqrt{2})}$$
+Let $f_6(x) = (x-3+\sqrt{2})(x-4-2\sqrt{2}),f_5(x) = (x-3+\sqrt{2})(x-5+2\sqrt{2}),f_4(x) = (x-3+\sqrt{2}),\\f_3(x)=(x-4-2\sqrt{2})(x-5+2\sqrt{2}),f_2(x) = (x-4-2\sqrt{2}),f_1(x)=(x-5+2\sqrt{2}),f_0(x) = \sqrt{2}$
+
+As a result, we generate $32$ polynomials with degree at most $2$ with real coefficients such that when $f_i(x)$ will make the set become the binary expansion of $i$. Hence, $VCDim(\mathcal{H}) \geq 5$
+
+\newpage
+
+% $f(x) = ax+b = f(x_1) \frac{x-x_2}{x_1-x_2}+f(x_2) \frac{x-x_1}{x_2-x_1}$. $x_1 = 1, x_2 = 2+\sqrt{2}, x_3 = 3-\sqrt{2}, x_4 = 4+2\sqrt{2}$
+
+% $$T(x_3,x_2,x_1) = \frac{x_3-x_2}{x_1-x_2} = 5-3\sqrt{2}$$
+% $$T(x_3,x_1,x_2) = \frac{x_3-x_1}{x_2-x_1} = -4+3\sqrt{2}$$
+% $$\rightarrow T(x,x_1,x_2)+T(x,x_2,x_1) = 1$$
+% $$T(x_4,x_2,x_1) = \frac{x_4-x_2}{x_1-x_2} = -\sqrt{2}$$
+% $$T(x_4,x_1,x_2) = \frac{x_4-x_1}{x_2-x_1} = 1+\sqrt{2}$$
+
+
+% $g(x) = T(x,x_1,x_2,\cdots,x_{n-1})+T(x,x_3,\cdots,x_{n-1},x_1)+\cdots+T(x,x_{n-1},x_1,\cdots,x_{n-2}) = 1$ Since $g(x)$ has degree at most $n-2$ but $g(x_1)=g(x_2)=\cdots=g(x_{n-1})=1$ so $g(x)$ must be a constant, which $g(x)=1 \ \forall x$
+
+Hypothesis: If $f = \text{span}\{1,x,x^2,\cdots,x^{n}\}$ then $VCDim(\mathcal{H}) = 2dim(f)-1$?
+
+For $n=2$, suppose there exists $6$ polynomials $f_1,f_2,\cdots,f_6$ and 6 numbers $x_1,x_2,\cdots,x_6$ such that
+$$f_i(x_i) \not \in \mathbb{Q},f_i(x_j) \in \mathbb{Q} \ \forall 1 \leq i \neq j \leq 6$$
+$$f_i(x)=a_ix^2+b_ix+c_i$$
+
+
+Consider the case where $f_i(x) = u_if_1(x)+v_i$ with some constant $u_i,v_i$, $i$ runs from $2$ to $6$
+
+We will have 
+$$f_5(x) = u_5f_1(x)+v_5$$
+or $u_5 = \frac{f_5(x_2)-f_5(x_3)}{f_1(x_2)-f_1(x_3)} \in \mathbb{Q}$. However, $u_5 = \frac{f_5(x_5)-f_5(x_3)}{f_1(x_5)-f_1(x_3)} \not \in \mathbb{Q}$. Hence, it is a contradiction
+
+Therefore, we have $a_1b_5 \neq a_5b_1$. We have in $f_1(x_2),f_1(x_3),f_1(x_4),f_1(x_5),f_1(x_6)$, there must be $4$ numbers such that one of it will differ from the rest, else we will get a cycle of $3$, which is impossible. WLOG, suppose $f_1(x_6) \neq f_1(x_1),f_1(x_2),f_1(x_3),f_1(x_4)$
+
+Define $A(i,j)=f_i(x_6)-f_i(x_j) = (x_6-x_j)(a_i(x_6+x_j)+b_i)$. If $i \in \{1,2,5 \}, j \in \{2,3,4 \}$, we will have
+$$A(i,j) \in \mathbb{Q} \iff (i,j) \neq (2,2)$$
+Consider now $i \in \{2,5 \}, j \in \{2,3,4\}$. We have $A(1,j) = f_1(x_6)-f_1(x_j) \neq 0 \ \forall j = 2,3,4$ then
+$$\frac{A(i,j)}{A(1,j)} = \frac{(x_6-x_j)(a_i(x_6+x_j)+b_i)}{(x_6-x_j)(a_1(x_6+x_j)+b_1)} = \frac{a_i(x_6+x_j)+b_i}{a_1(x_6+x_j)+b_1} \in \mathbb{Q}$$
+if $(i,j) \neq (2,2)$. Consider $i \in \{2,5\}, j \in \{2,3\}$. We will have
+$$\frac{A(i,j)}{A(1,j)}-\frac{A(i,4)}{A(1,4)} = \frac{a_i(x_6+x_j)+b_i}{a_1(x_6+x_j)+b_1}-\frac{a_i(x_6+x_4)+b_i}{a_1(x_6+x_4)+b_1} = \frac{(x_4-x_j)(b_ia_1-b_1a_i)}{(a_1(x_6+x_j)+b_1)(a_1(x_6+x_4)+b_1)}$$
+which is rational when $(i,j) \neq (2,2)$. We get when $j=2$
+$$\frac{(x_4-x_2)(b_2a_1-b_1a_2)}{(a_1(x_6+x_2)+b_1)(a_1(x_6+x_4)+b_1)} \not \in \mathbb{Q}, \frac{(x_4-x_2)(b_5a_1-b_1a_5)}{(a_1(x_6+x_2)+b_1)(a_1(x_6+x_4)+b_1)} \in \mathbb{Q}$$
+Therefore, $\frac{b_5a_1-b_1a_5}{b_2a_1-b_1a_2} \not \in \mathbb{Q}$. However when $j=3$
+$$\frac{(x_4-x_3)(b_2a_1-b_1a_2)}{(a_1(x_6+x_3)+b_1)(a_1(x_6+x_4)+b_1)} \in \mathbb{Q}, \frac{(x_4-x_3)(b_5a_1-b_1a_5)}{(a_1(x_6+x_3)+b_1)(a_1(x_6+x_4)+b_1)} \in \mathbb{Q}$$
+We have $b_2a_1-b_1a_2 \neq 0$, so $\frac{b_5a_1-b_1a_5}{b_2a_1-b_1a_2} \in \mathbb{Q}$
+
+From here, it is a contradiction. So there does not exist $6$ numbers $x_1,x_2,x_3,x_4,x_5,x_6$ that satisfy the problem. Therefore, we can conclude that $VCDim(\mathcal{H}) \leq 5$
+
+As a result, $VCDim(\mathcal{H})=5$
+\newpage
+
+Now, suppose $f=\text{span} \{1,x,\cdots,x^n \}$. Now suppose there exists $2n+2$ real numbers $x_1,x_2,\cdots,x_{2n+2}$ and $2n+2$ polynomials $f_1,f_2,\cdots,f_{2n+2}$ such that
+$$\begin{cases}
+f_i(x_i) \not \in \mathbb{Q} \ \forall 1 \leq i \leq 2n+2\\
+f_i(x_j) \in \mathbb{Q} \ \forall 1 \leq i \neq j \leq 2n+2\\
+f_i(x) = a_{ni}x^n+a_{(n-1)i}x^{n-1}+\cdots+a_{1i}x+a_{0i}
+\end{cases}$$
+With the same argument as above, suppose $f_1(x_{2n+2}) \neq f_1(x_1),f_1(x_2),\cdots,f_1(x_{n+2})$.
+
+Let $I=\{1,2,n+3,\cdots,2n+1\}$ and $J=\{2,3,4,\cdots,n+2\}$
+
+
+Denote $A(i,j)=f_i(x_{2n+2})-f_i(x_j) = (x_{2n+2}-x_j)T_{i}(x_j)$ with $T_i$ be some polynomial with degree $\leq n-1$. Moreover, $A(1,j) \neq 0 \ \forall j \in J$. Therefore, we have
+$$\frac{A(i,j)}{A(1,j)} = \frac{(x_{2n+2}-x_j)T_{i}(x_j)}{(x_{2n+2}-x_j)T_1(x_j)} = \frac{T_i(x_j)}{T_1(x_j)}$$
+This is rational iff $(i,j) \neq (2,2)$.
+
+Suppose for any $j' \in J, i \in I, j' \neq 2, i \geq n+3$
+$$\frac{A(i,2)}{A(1,2)}-\frac{A(i,j')}{A(1,j')}=0 \iff \frac{f_i(x_{2n+2})-f_i(x_2)}{f_1(x_{2n+2})-f_1(x_2)} = \frac{f_i(x_{2n+2})-f_i(x_j)}{f_1(x_{2n+2})-f_1(x_j)}$$
+Consider $x_j'$ is a variable (Although it does not). We will have
+$$(f_i(x_{2n+2})-f_i(x_2))(f_1(x_{2n+2})-f_1(x_j))=(f_1(x_{2n+2})-f_1(x_2))(f_i(x_{2n+2})-f_i(x_j))$$
+$$\iff P(x_j)=A(B-f_1(x_j))-C(D-f_i(x_j))=0$$
+For some $i$, we will have some constants $A,B,C,D$ as above. However, the degree of the polynomial is at most $n$ and it receives every element of $J$ be roots. Hence $P(x)$ has $n+1$ roots or
+$$P(x)=0 \ \forall x \iff A(B-f_1(x))=C(D-f_i(x)) \ \forall x$$
+Then plug $x=x_1$ in, we have
+$$A(B-f_1(x_1))=C(D-f_i(x_1))$$
+However, $A,B,C,D$ are rational numbers so $B-f_1(x_1) \not \in \mathbb{Q},D-f_i(x_1) \in \mathbb{Q}$. Hence, we must have $A=0$ or
+$$f_i(x_{2n+2})=f_i(x_2) \ \forall i=n+3,\cdots,2n+1$$
+There are 2 cases
+
+Case 1: If $C=0$, then $f_1(x_{2n+2})=f_1(x_2)$, which is a contradiction since we have assume above
+
+Case 2: $f_i(x_1)=D \ \forall \ n+3 \leq i \leq 2n+1$. Then we will have
+$$f_i(x_1)=f_i(x_{2n+2}) \ \forall \ n+3 \leq i \leq 2n+1$$
+Hence, we will have
+$$f_i(x_1)=f_i(x_2)=f_i(x_{2n+2}) \ \forall \ n+3 \leq i \leq 2n+1$$
+
+However, if we let $x=x_i$ for some $i \in I \setminus \{1\}$, we also have
+$$A(B-f_1(x_i))=C(D-f_i(x_i))$$
+Then with the same arguments as above, $C=0$, which is clearly impossible. Hence, the claim is false
+
+Therefore, we have shown that there must be an $i \geq n+3$ and $j' \neq 2$ such that
+$$\frac{A(i,2)}{A(1,2)}-\frac{A(i,j')}{A(1,j')} \neq 0$$
+WLOG, suppose $j=n+2$ and $i=2n+1$
+\newpage
+Take $j=n+2$, we have
+$$\frac{A(i,j)}{A(1,j)}-\frac{A(i,n+2)}{A(1,n+2)}=\frac{T_i(x_j)}{T_1(x_j)}-\frac{T_i(x_{n+2})}{T_1(x_{n+2})}=\frac{(x_{n+2}-x_j)U_i(x_j)}{T_1(x_j)T_1(x_{n+2})}$$
+with $deg \ U_i \leq n-2$. The expression is rational iff $(i,j) \neq (2,2)$. We update
+$$I=\{2,n+3,\cdots,2n+1\}, J= \{2,3,\cdots,n+1 \}$$
+
+Taking $i=2n+1$, we have
+$$\frac{U_i(x_j)}{U_{2n+1}(x_j)}$$
+which is rational iff $(i,j) \neq (2,2)$. Moreover, we also have $U_{2n+1}(x_2) \neq 0$
+
+
+Claim: There must be at least 2 numbers $j,j' \in J$ such that $U_{2n+1}(x_j) \neq 0$
+
+
+Proof: Suppose not, since $|J| = n$ and $deg \ U_{2n+1} \leq n-2$. Therefore, we will have $U_{2n+1}$ is $0$ for at least $n-1$ values. As a result, $U_{2n+1} \equiv 0$. Then
+$$\frac{A(i,j)}{A(1,j)} = \frac{A(i,n+2)}{A(1,n+2)}$$
+for $1 \leq j \leq n$ However, this is a contradiction since when $j=i$, the LHS is irrational while the RHS is $1$
+
+Hence, we can show that there are at least $2$ values of $j \in J$ such that $U_{2n+1}(x_j) \neq 0$
+
+Suppose $U_{2n+1}(x_2),U_{2n+1}(x_{n+1}) \neq 0$. Then consider
+$$\frac{U_i(x_j)}{U_{2n+1}(x_j)}-\frac{U_i(x_{n+1})}{U_{2n+1}(x_{n+1})} = \frac{(x_{n+1}-x_j)V_i(x_j)}{U_{2n+1}(x_j)U_{2n+1}(x_{n+1})}$$
+which is rational iff $(i,j) \neq (2,2)$ and $\deg V_i \leq n-3$. Now, we get
+$$I=\{2,n+3,\cdots,2n \}, J = \{2,3,4,\cdots,n\}$$
+
+As we went down finitely many times, we will get to the set $I=\{2,n+3 \}$ and $J=\{2,3\}$ with some polynomials $\omega_i$ with degree $1$ and some constants $C_i$ such that
+
+
+$$\frac{\omega_i(x_j)}{\omega_{n+4}(x_j)}-\frac{\omega_i(x_{4})}{\omega_{n+4}(x_4)} = \frac{(x_4-x_j)C_i}{K}$$
+Where $K$ does not depend on $i$ and it is rational iff $(i,j) \neq (2,2)$
+
+Now let $j=2$, we will have
+$$\frac{(x_4-x_2)C_2}{K} \not \in \mathbb{Q}, \frac{(x_4-x_2)C_{n+3}}{K} \in \mathbb{Q}$$
+Therefore, $\frac{C_{n+3}}{C_2} \not \in \mathbb{Q}$
+
+On the other hand, if $j=3$, we have
+$$\frac{(x_4-x_3)C_2}{K'} \in \mathbb{Q}, \frac{(x_4-x_3)C_{n+3}}{K'} \in \mathbb{Q}$$
+Now if $C_{n+3}=0$, we will have $\frac{\omega_{n+3}(x)}{\omega_{n+4}(x)}=\alpha$ for any $x$. Then...
+
+Or just say...since $\frac{(x_4-x_2)C_2}{K}$ is not rational, $C_2$ is nonzero. So, since $x_3 \neq x_4$, $\frac{(x_4-x_3)C_2}{K'}$ is not zero, dividing gives $\frac{C_{n+3}}{C_2} \in \mathbb{Q}$, a contradiction!
+
+Hence, we have shown that $VCDim(\mathcal{H}) \leq 2dim \mathcal{F}-1$
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass[english, 10pt]{article} % beamer neu lam slide
+\usepackage[top=0.9in, bottom=0.9in, left=0.7in, right=0.7in]{geometry} 
+\usepackage{cite} 
+\usepackage{hyperref}
+\usepackage{ bbold }
+\usepackage{titletoc}
+\usepackage{graphicx}
+\usepackage{color} 
+\usepackage{amsmath, amsfonts, amssymb, amsxtra, amsthm}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{verbatim}
+
+\title{...}
+
+\begin{document}
+
+\maketitle
+We will prove by induction and probabilistic method. Suppose there are $2n-1$ numbers and $2n-1$ polynomials with degree $<n$ that satisfy the problem. We need to construct $2$ new number $u,v$ and $2n+1$ new polynomials such that they also satisfy
+
+In $\{x_1,x_2,\cdots,x_{2n-1} \}$, there must be $n+1$ numbers that will yield rational number for any $g_i$. WLOG, suppose $g(x_1),g(x_2),\cdots,g(x_{n+1})$ are rational number. By Lagrange Interpolation formula, we have
+\begin{align*}
+    g(x) &= g(x_1) \frac{(x-x_2)(x-x_3)\cdots(x-x_{n+1})}{(x_1-x_2)(x_1-x_3)\cdots(x_1-x_{n+1})}\\
+    &+g(x_2)\frac{(x-x_1)(x-x_3)\cdots(x-x_{n+1})}{(x_2-x_1)(x_2-x_3)\cdots(x_2-x_{n+1})}\\
+    &+\cdots\\
+    &+g(x_{n+1})\frac{(x-x_1)(x-x_2)\cdots(x-x_{n})}{(x_{n+1}-x_1)(x_{n+1}-x_2)\cdots(x_{n+1}-x_n)}
+\end{align*}
+For simplicity, we will build all number in $Q(\sqrt{2})$. We have
+$$\frac{(x-x_2)(x-x_3)\cdots(x-x_{n+1})}{(x_1-x_2)(x_1-x_3)\cdots(x_1-x_{n+1})}=\frac{(x-x_2)(x-x_3)\cdots(x-x_{n})}{(x_1-x_2)(x_1-x_3)\cdots(x_1-x_{n})}\frac{x-x_{n+1}}{x_1-x_{n+1}}$$
+\end{document}
